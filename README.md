@@ -17,7 +17,7 @@ Useage
 * Send the following OSC commands to the address defined in line 4 (line 3 defines the address to send data replies to):
 	* ``/f/pinmode pin1 mode1 [pin2 mode2 ...]`` - set Pin mode of ``pin`` to ``mode`` (0 - digital in, 1 - digital out, 2 - analog in, 3 - analog out (pwm), 4 - servo(?))
 	* ``/f/write pin1 value1 [pin2 value2 ...]`` - write data to pin. Provide digital values as 0 or 1 and analog values als floats from 0 to 1
-	* ``/f/getdata pin1 value1 [pin2 value2 ...]`` - get data from pin. Starts sending data to host specified in firmataOscBridge.js line 3 with the OSC message format ``/f/data pin value`` (with value being (bool)0|1 for digital or (float)0..1 for analog)
+	* ``/f/getdata pin1 value1 [pin2 value2 ...]`` - get data from pin. This actually starts sending data to the host address specified in ``firmataOscBridge.js line 3`` with the OSC message format ``/f/data pin value`` (with value being (bool)0|1 for digital or (float)0..1 for analog)
 
 Dependencies
 --------------
