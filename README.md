@@ -7,6 +7,8 @@ By running this software you can access input and output pins on arduino-boards 
 
 This is a quick'n'dirty hack with very limited functionality (for now)! Use at your own, erm, "risk". (It will probably be developed further in the near future, but I welcome you to improve it yourself!)
 
+Created by Benjamin Graf (http://www.bennigraf.de)
+
 Usage
 --------
 
