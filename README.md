@@ -5,7 +5,7 @@ Access Arduinoish things with OSC
 
 By running this software you can access input and output pins on arduino-boards connected to your host over usb/serial (and running the firmata "default firmware") by OSC.
 
-This is a quick'n'dirty hack with very limited functionality (for now)! Use at your own, erm, "risk". (It will probably be improved in the near future, but I welcome you to improve it yourself!)
+This is a quick'n'dirty hack with very limited functionality (for now)! Use at your own, erm, "risk". (It will probably be developed further in the near future, but I welcome you to improve it yourself!)
 
 Useage
 --------
