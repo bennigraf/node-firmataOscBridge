@@ -22,9 +22,6 @@ var board = new firmata.Board('/dev/tty.usbserial-AH00MQ4H', function(){
 });
 
 
-// indexes of pins whose data is being sent to the host
-var pinsToAnswer = [];
-
 oscServer.on("message", function (msg, rinfo) {
 	console.log("Message: " + msg);
 	if(!board) {
@@ -46,15 +43,16 @@ oscServer.on("message", function (msg, rinfo) {
 			for (var i=1; i < (msg.length); i = i + 2) {
 				console.log("Pin " + msg[i] + ", data " + msg[i + 1]);
 				if (board.pins[i].mode == 1) {
-					// digital mode
-					board.digitalWrite(Math.round(msg[i+1]));
+					// digital mode            
+					console.log("Digital Write");
+					board.digitalWrite(msg[i], Math.round(msg[i+1]));
 				} else if (board.pins[i].mode == 3) {
 					// analog (pwm) mode, convert from float 0..1 to int 0..255
 					var val = msg[i+1];
 					val = Math.round(val * 255);
 					val = Math.min(val, 255);
 					val = Math.max(val, 0);
-					board.analogWrite(Math.round(msg[i+1] * 255));
+					board.analogWrite(msg[i], Math.round(msg[i+1] * 255));
 				};
 			};
 		}
@@ -64,7 +62,6 @@ oscServer.on("message", function (msg, rinfo) {
 			console.log("Get data");
 			for (var i=1; i < (msg.length); i++) {
 				console.log("Pin " + msg[i]);
-				// pinsToAnswer.push(msg[i]);
 				var pinIndex = msg[i];
 				var pin = board.pins[pinIndex];
 				var mode = pin.mode;
