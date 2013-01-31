@@ -41,18 +41,22 @@ oscServer.on("message", function (msg, rinfo) {
 		if(msg[0] == '/f/write') {
 			console.log("write data to pin");
 			for (var i=1; i < (msg.length); i = i + 2) {
-				console.log("Pin " + msg[i] + ", data " + msg[i + 1]);
-				if (board.pins[i].mode == 1) {
+				var pinIndx = msg[i];
+				var data = msg[i+1];
+				console.log("Pin " + pinIndx + ", data " + data + ", Pin-Mode " + board.pins[pinIndx].mode);
+				if (board.pins[pinIndx].mode == 1) {
 					// digital mode            
 					console.log("Digital Write");
-					board.digitalWrite(msg[i], Math.round(msg[i+1]));
-				} else if (board.pins[i].mode == 3) {
+					board.digitalWrite(pinIndx, Math.round(data));
+				} else if (board.pins[pinIndx].mode == 3) {
 					// analog (pwm) mode, convert from float 0..1 to int 0..255
-					var val = msg[i+1];
+					console.log("Analog Write");
+					var val = data;
 					val = Math.round(val * 255);
+					val = Math.round(val);
 					val = Math.min(val, 255);
 					val = Math.max(val, 0);
-					board.analogWrite(msg[i], Math.round(msg[i+1] * 255));
+					board.analogWrite(pinIndx, val);
 				};
 			};
 		}
